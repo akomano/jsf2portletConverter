@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jboss.portletbridge.tools</groupId>
+  <artifactId>simple-convertor</artifactId>
+  <name>simpleJsf2PortletConvertor</name>
+  <version>0.2.0-SNAPSHOT</version>
+  <description>Simple tool to convert JSF apps to portlet</description>
+
+  <licenses>
+    <license>
+       <name>GNU Lesser General Public License, Version 2.1</name>
+       <distribution>repo</distribution>
+       <url>http://www.gnu.org/licenses/lgpl-2.1.txt</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:svn:https://svn.devel.redhat.com/repos/jboss-qa/people/jjamrich/jsf2portletConvertor/trunk</connection>
+    <developerConnection>scm:svn:https://svn.devel.redhat.com/repos/jboss-qa/people/jjamrich/jsf2portletConvertor/trunk</developerConnection>
+    <url>https://svn.devel.redhat.com/repos/jboss-qa/people/jjamrich/jsf2portletConvertor/trunk</url>
+  </scm>
+
+  <issueManagement>
+    <system>jira</system>
+    <url>https://jira.jboss.org/jira/browse/JBQA</url>
+  </issueManagement>
+
+  <developers>
+    <developer>
+      <name>Jan Jamrich</name>
+      <email>jjamrich@redhat.com</email>
+    </developer>
+  </developers>
+  
+  <build>
+    <plugins>
+    	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-compiler-plugin</artifactId>
+    		<configuration>
+				<source>1.5</source>
+				<target>1.5</target>
+			</configuration>
+    	</plugin>
+        
+        <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>org.jboss.portletbridge.tools.simpleConverter.Main</mainClass>
+                    </manifest>
+                </archive>
+                <descriptorRefs>
+                	<descriptorRef>jdom</descriptorRef>
+                    <descriptorRef>xalan</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+        </plugin>
+
+        <plugin>
+		<artifactId>maven-dependency-plugin</artifactId>
+		<executions>
+			<execution>
+				<id>copy-deps-to-lib</id>
+				<phase>generate-resources</phase>
+				<goals>
+					<goal>copy-dependencies</goal>
+				</goals>
+				
+			</execution>
+		</executions>
+	</plugin>
+		
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jar-plugin</artifactId>
+		<configuration>
+		  <archive>
+		  	<manifest>
+		  		<addClasspath>true</addClasspath>			  					  		
+		  	</manifest>
+		    <manifestEntries>
+		    	<Class-Path>xalan.jar jdom.jar</Class-Path>
+				<Main-Class>org.jboss.portletbridge.tools.simpleConverter.Main</Main-Class>		
+		    </manifestEntries>
+		  </archive>
+		</configuration>
+	</plugin>
+        
+    </plugins>
+  </build>
+  
+  
+  <dependencies>
+  
+  	<dependency>
+	    <groupId>xalan</groupId>
+	    <artifactId>xalan</artifactId>
+	    <version>2.7.0</version>
+	    <scope>runtime</scope>
+	</dependency>
+	
+	<dependency>
+	    <groupId>jdom</groupId>
+	    <artifactId>jdom</artifactId>
+	    <version>1.0</version>
+	    <scope>compile</scope>
+	</dependency>
+
+  </dependencies>
+</project>

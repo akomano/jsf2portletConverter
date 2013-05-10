@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+             version="2.0">
+   <portlet>
+      <portlet-name>XXX</portlet-name>
+      <display-name>XXX Portlet</display-name>
+      
+      <portlet-info>
+      	<title></title>
+      </portlet-info>
+      
+      <portlet-class>
+         javax.portlet.faces.GenericFacesPortlet
+      </portlet-class>
+      
+      <init-param>
+	      <name>javax.portlet.faces.preserveActionParams</name>
+	      <value>true</value>
+   	  </init-param>
+
+      <init-param>
+         <name>javax.portlet.faces.defaultViewId.view</name>
+         <value><!-- replace with (absolute) path to page --></value>
+      </init-param>
+
+      <!-- init-param>
+         <name>javax.portlet.faces.defaultViewId.edit</name>
+         <value></value>
+      </init-param-->
+
+      <!-- init-param>
+         <name>javax.portlet.faces.defaultViewId.help</name>
+         <value></value>
+      </init-param-->
+      <expiration-cache>-0</expiration-cache>
+      
+      <supports>
+         <mime-type>text/html</mime-type>
+         <portlet-mode>VIEW</portlet-mode>
+         <portlet-mode>EDIT</portlet-mode>
+         <portlet-mode>HELP</portlet-mode>
+      </supports>
+   </portlet>
+</portlet-app>
+
+   
